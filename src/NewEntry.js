@@ -10,7 +10,7 @@
             chapterTitle: '',
             isChapterTitleSet: false,
             sections: [],
-            thisChapter: {chapter: this.chapterTitle, sections:[]}
+            thisChapter: {chapter: 'hggjhgjhgjg', sections:[{title: 'gghjghjgggk', body:'jhgjhgjhgjg'}]}
         }
         this.makeBody = this.makeBody.bind(this)
     }
@@ -65,8 +65,8 @@
                     })
                 }
                 <NewSection 
-                    title=''
-                    body=''
+                    title='jhjkhk'
+                    body='hkkhkh'
                     makeSection={this.makeBody}
                 />
             </div>

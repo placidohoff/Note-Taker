@@ -4,9 +4,9 @@ import './NewSection.css';
 
 function NewSection({title, body, makeBody}){
 
-    const [sectionTitle, setSectionTitle] = useState('')
+    const [sectionTitle, setSectionTitle] = useState({title})
     const [isSectionTitleSet, setIsSectionTitleSet] = useState(false)
-    const [sectionBody , setSectionBody] = useState('')
+    const [sectionBody , setSectionBody] = useState({body})
     const [isSectionBodySet, setIsSectionBodySet] = useState(false)
 
     const makeSectionTitle = () => {
