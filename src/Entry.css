@@ -1,0 +1,18 @@
+.entry{
+    border: 1px solid black;
+}
+
+.entry__title{
+
+    font-weight: bold;
+    
+}
+
+.entry__bodyTitle{
+    text-decoration: underline;
+    margin-left: 10px;
+}
+
+.entry__bodyContent{
+    margin-left: 20px;
+}

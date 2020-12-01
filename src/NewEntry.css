@@ -1,0 +1,11 @@
+.newEntry{
+    border: 1px solid black;
+}
+
+.newEntry__chapterTitle{
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 3px;
+}

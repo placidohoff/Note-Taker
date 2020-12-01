@@ -1,0 +1,12 @@
+.newsection{
+
+}
+
+.newsection__title{
+    margin-left: 5px;
+    text-decoration: underline;
+}
+
+.newsection__body{
+    margin-left: 20px;
+}
