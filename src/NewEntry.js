@@ -29,6 +29,14 @@ function NewEntry(props) {
     const makeChapterTitle = (e) => {
         //alert(e.target.value)
         setIsChapterTitleSet(true)
+        dispatch({
+            type: 'ADD_CHAPTER_TITLE',
+            item: {
+                title: chapterTitle,
+                entryIndex: props.entryIndex
+            }
+
+        })
     }
 
     const openNewSection = (e) => {

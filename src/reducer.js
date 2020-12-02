@@ -25,9 +25,12 @@ const reducer = (state, action) => {
                 chapters:[...state.chapters, action.item]
             }
         case 'ADD_CHAPTER_TITLE':
+            state.chapters[action.item.entryIndex].title = action.item.title
+            console.log(state)
             return{
                 ...state,
                 //chapters:[action.item.entryIndex].title:
+                
             }
         case 'MAKE_SECTION':
             console.log(state)
@@ -45,7 +48,7 @@ const reducer = (state, action) => {
                     
                 //     }
                 // ]
-                //chapters: ...state.chapters
+                chapters: [...state.chapters]
             }
         default:
             return state;
