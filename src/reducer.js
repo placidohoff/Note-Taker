@@ -1,15 +1,4 @@
 export const initialState = {
-    // chapters: [
-    //     {
-    //         title: '',
-    //         sections: [
-    //             {
-    //                 title: '',
-    //                 body: ''
-    //             }
-    //         ]
-    //     }
-    // ]
     chapters: [
         {
             title: 'First Subject',
@@ -21,9 +10,11 @@ export const initialState = {
                 }
             ]
         }
-        
-
-    ]
+    ],
+    newSection: {
+        title:'',
+        content:''
+    }
 }
 
 const reducer = (state, action) => {
@@ -32,6 +23,29 @@ const reducer = (state, action) => {
             return{
                 ...state,
                 chapters:[...state.chapters, action.item]
+            }
+        case 'ADD_CHAPTER_TITLE':
+            return{
+                ...state,
+                //chapters:[action.item.entryIndex].title:
+            }
+        case 'MAKE_SECTION':
+            console.log(state)
+            state.chapters[action.item.entryIndex].bodies = [...state.chapters[action.item.entryIndex].bodies, action.item]
+            // for(let i = 0; i < state.chapters.length; i++){
+            //     console.log('yo')
+            // }
+            return{
+                 ...state,
+               // newSection: action.item,
+                // chapters: [
+                //     {
+                //         title: state.chapters[action.item.entryIndex].title,
+                //         bodies: [...state.chapters[action.item.entryIndex].bodies, action.item]
+                    
+                //     }
+                // ]
+                //chapters: ...state.chapters
             }
         default:
             return state;

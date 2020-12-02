@@ -1,9 +1,11 @@
- import React, {useState} from 'react'
+ import React, {useState, useEffect} from 'react'
  import './NewEntry.css'
  import {TextField} from '@material-ui/core'
  import NewSection from './NewSection.js'
+ import { useStateValue } from './StateProvider.js';
 
-function NewEntry() {
+
+function NewEntry(props) {
     // constructor(props){
     //     super(props)
     //     this.state = {
@@ -16,19 +18,36 @@ function NewEntry() {
     // }
 
     // const [section]
-    const [chapterTitle, setChapterTitle] = useState('')
-    const [isChapterTitleSet, setIsChapterTitleSet] = useState(false)
-    const [sections, setSections] = useState([])
+    const [chapterTitle, setChapterTitle] = useState(props.title)
+    const [isChapterTitleSet, setIsChapterTitleSet] = useState(props.isSet)
+    const [sections, setSections] = useState(props.sections)
     const [thisChapter, setThisChapter] = useState({chapter: chapterTitle, sections:[]})
+    const [makeNewSection, setMakeNewSection] = useState(false)
+    const [{chapters}, dispatch] = useStateValue();
+
 
     const makeChapterTitle = (e) => {
         //alert(e.target.value)
         setIsChapterTitleSet(true)
     }
 
+    const openNewSection = (e) => {
+        setMakeNewSection(true)
+    }
+
     const makeBody = (e) =>{
         alert('hello')
     }
+
+    useEffect(() => {
+        console.log(sections)
+        setThisChapter(
+            {
+                chapter: chapterTitle,
+                sections: sections
+            }
+        )
+    }, [])
     
      return(
          <div className="newEntry">
@@ -62,23 +81,40 @@ function NewEntry() {
                 {
                     //console.log({thisChapter.sections[0]})
                     thisChapter.sections.map(section => {
-                        return(
-                        <NewSection
-                            title={section.title}
-                            body={section.body}
-                            makeSection={makeBody}
-                            
-                        />
-                        )
+                        //if(section.title !== '' && section.body !== ''){
+                            return(
+                            <NewSection
+                                isSet={props.isSet}
+                                title={section.title}
+                                body={section.content}
+                                makeSection={makeBody}
+                                
+                            />
+                            )
+                        //}
                         
                     })
                 }
+                {
+                    makeNewSection
+                    ?
                 <NewSection 
+                    isSet={false}
                     title=''
                     body=''
                     makeSection={makeBody}
-                />
+                    entryIndex={props.entryIndex}
+                /> 
+                :
+                <></>
+                }
             </div>
+            <br />
+            <button
+                onClick={openNewSection}
+            >
+                Add New
+            </button>
             
          </div>
      )

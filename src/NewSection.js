@@ -1,16 +1,29 @@
 import React, {useState} from 'react'
 import {TextField} from '@material-ui/core'
 import './NewSection.css';
+import { useStateValue } from './StateProvider';
 
-function NewSection({title, body, makeBody}){
+function NewSection(props){
 
-    const [sectionTitle, setSectionTitle] = useState(title)
-    const [isSectionTitleSet, setIsSectionTitleSet] = useState(false)
-    const [sectionBody , setSectionBody] = useState(body)
-    const [isSectionBodySet, setIsSectionBodySet] = useState(false)
+    const [sectionTitle, setSectionTitle] = useState(props.title)
+    const [isSectionTitleSet, setIsSectionTitleSet] = useState(props.isSet)
+    const [sectionBody , setSectionBody] = useState(props.body)
+    const [isSectionBodySet, setIsSectionBodySet] = useState(props.isSet)
+    const [{newSection}, dispatch] = useStateValue();
 
     const makeSectionTitle = () => {
 
+    }
+
+    const makeSection = (e) => {
+        dispatch({
+                    type: 'MAKE_SECTION',
+                    item:{
+                        title: sectionTitle,
+                        content: sectionBody,
+                        entryIndex: props.entryIndex
+                    }
+                })
     }
 
     return(
@@ -77,11 +90,27 @@ function NewSection({title, body, makeBody}){
                 
                 }
              </div>
-            <button
-                onClick={makeBody}
-            >
-                Make Section
-            </button>
+             {
+                 props.isSet
+                 ?
+                    <></>
+                :
+                <button
+                    //onClick={props.makeSection}
+                    // onClick={
+                    //     dispatch({
+                    //         type: 'MAKE_SECTION',
+                    //         item:{
+                    //             title: sectionTitle,
+                    //             content: sectionBody
+                    //         }
+                    //     })
+                    // }
+                    onClick={makeSection}
+                >
+                    Save
+                </button>
+            }
         </div>
     )
 }

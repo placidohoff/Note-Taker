@@ -21,18 +21,36 @@ function App(){
   const [{chapters}, dispatch] = useStateValue();
   const [entrees, setEntrees] = useState(entries)
   const [makeNewNote, setMakeNewNote] = useState(false)
-
+  const [emptySection, setEmptySection] = useState([{title: '', content:''}])
   
+  const makeNewEntry = (e) => {
+    dispatch({
+      type: 'ADD_CHAPTER',
+      item:{
+        title: 'New Subject',
+        bodies: [
+          {
+            title: 'New Section',
+            content: 'afasf afasfas asfasf afas fas afasf'
+                
+          }
+        ]
+      }
+    })
+  }
+
     return (
       <div className="app">
         <div className="app__entries">
-          {chapters.map(entry => {
+          {chapters.map((entry, index) => {
             return<>
               
-              <Entry 
+              <NewEntry  
+                isSet={true}
                 title = {entry.title}
-                content = {entry.bodies}
+                sections = {entry.bodies}
                 key={Math.random()}
+                entryIndex={index}
               />
 
               <br />
@@ -43,7 +61,10 @@ function App(){
               ?
               <div className="app_newEntry">
                 <NewEntry 
-                
+                  isSet={false}
+                  title = ''
+                  sections = {emptySection}
+                  key={Math.random()}
                 />
               </div>
               :
@@ -52,9 +73,10 @@ function App(){
         </div>
         <div className="app__options">
           <button
-            onClick={e => {setMakeNewNote(true)}}
+            //onClick={e => {setMakeNewNote(true)}}
+            onClick={makeNewEntry}
           >
-            New Note
+            New Entry
           </button>
 
         </div>
