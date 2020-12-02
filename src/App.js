@@ -1,44 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css';
 
 import { entries } from "./entries.js";
 import Entry from './Entry.js'
 import NewEntry from './NewEntry.js'
 
+import { useStateValue } from './StateProvider.js'
 
 
 
-class App extends React.Component{
-  constructor(){
-    super()
-    this.state = {
-      entries: entries,
-      localEntriesArray: [],
-      makeNewNote: false
-    }
-  }
+function App(){
+  // constructor(){
+  //   super()
+  //   this.state = {
+  //     entries: entries,
+  //     localEntriesArray: [],
+  //     makeNewNote: false
+  //   }
+  // }
+  const [{chapters}, dispatch] = useStateValue();
+  const [entrees, setEntrees] = useState(entries)
+  const [makeNewNote, setMakeNewNote] = useState(false)
 
-  newNote(){
-    
-  }
   
-  render(){
     return (
       <div className="app">
         <div className="app__entries">
-          {this.state.entries.map(entry => {
+          {chapters.map(entry => {
             return<>
               
               <Entry 
                 title = {entry.title}
                 content = {entry.bodies}
+                key={Math.random()}
               />
 
               <br />
             </>
           })}
           {
-            this.state.makeNewNote
+            makeNewNote
               ?
               <div className="app_newEntry">
                 <NewEntry 
@@ -51,7 +52,7 @@ class App extends React.Component{
         </div>
         <div className="app__options">
           <button
-            onClick={e => {this.setState({makeNewNote:true})}}
+            onClick={e => {setMakeNewNote(true)}}
           >
             New Note
           </button>
@@ -60,7 +61,7 @@ class App extends React.Component{
         
       </div>
     );
-  }
+  
 }
 
 export default App;
