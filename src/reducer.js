@@ -11,11 +11,9 @@ export const initialState = {
             ]
         }
     ],
-    newSection: {
-        title:'',
-        content:''
-    },
-    user: ''
+    user: '',
+    bookTitle: 'New Book'
+
 }
 
 const reducer = (state, action) => {
@@ -53,6 +51,7 @@ const reducer = (state, action) => {
             }
         case 'SET_USER':
             return{
+                ...state,
                 user: action.item.user
             }
         default:

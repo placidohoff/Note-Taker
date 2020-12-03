@@ -32,6 +32,7 @@ function App(){
         </Route>
 
         <Route path="/">
+          <Header />
           <ViewBooks />
         </Route>
 

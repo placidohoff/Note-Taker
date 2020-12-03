@@ -20,6 +20,7 @@ function MainBody(){
   //   }
   // }
   const [{user, chapters}, dispatch] = useStateValue();
+  const [username, setUsername] = useState(user.split('@'))
   const [entrees, setEntrees] = useState(entries)
   const [makeNewNote, setMakeNewNote] = useState(false)
   const [emptySection, setEmptySection] = useState([{title: '', content:''}])
@@ -50,7 +51,7 @@ function MainBody(){
   const saveTheBook = (e) => {
       e.preventDefault();
 
-      db.collection('testuser').doc(bookTitle).set({
+      db.collection(username[0]).doc(bookTitle).set({
           bookTitle,
           chapters: chapters 
       })
