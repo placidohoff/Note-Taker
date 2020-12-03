@@ -1,0 +1,23 @@
+.login{
+    margin-left: 25%;   
+}
+
+.login >form>input{
+    height: 20px;
+}
+
+.login >form>button{
+    margin-top: 20px;
+    height: 30px;
+    margin-left: 15px;
+}
+
+.login__bottom{
+    width: 200px;
+}
+
+.login__error{
+    margin-top: 20px;
+    /* margin-left: 25%; */
+    color: red;
+}

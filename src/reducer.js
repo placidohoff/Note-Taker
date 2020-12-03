@@ -14,7 +14,8 @@ export const initialState = {
     newSection: {
         title:'',
         content:''
-    }
+    },
+    user: ''
 }
 
 const reducer = (state, action) => {
@@ -49,6 +50,10 @@ const reducer = (state, action) => {
                 //     }
                 // ]
                 chapters: [...state.chapters]
+            }
+        case 'SET_USER':
+            return{
+                user: action.item.user
             }
         default:
             return state;

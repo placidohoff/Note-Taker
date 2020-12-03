@@ -10,6 +10,7 @@ import Header from './Header';
 import MainBody from './MainBody';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Login from './Login.js'
+import ViewBooks from './ViewBooks.js'
 
 
 function App(){
@@ -33,6 +34,11 @@ function App(){
         <Route path="/">
           <ViewBooks />
         </Route>
+
+        {/* <Route path="/">
+          <Header />
+          <MainBody />
+        </Route> */}
 
       </Switch>
     </div>

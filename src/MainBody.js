@@ -7,6 +7,7 @@ import NewEntry from './NewEntry.js'
 
 import { useStateValue } from './StateProvider.js'
 import Scroller from './Scroller.js'
+import { db } from './firebase.js'
 
 
 function MainBody(){
@@ -18,7 +19,7 @@ function MainBody(){
   //     makeNewNote: false
   //   }
   // }
-  const [{chapters}, dispatch] = useStateValue();
+  const [{user, chapters}, dispatch] = useStateValue();
   const [entrees, setEntrees] = useState(entries)
   const [makeNewNote, setMakeNewNote] = useState(false)
   const [emptySection, setEmptySection] = useState([{title: '', content:''}])
@@ -44,6 +45,16 @@ function MainBody(){
   const makeNotebookTitle = (e) =>{
       e.preventDefault()
       setIsBookTitleSet(true)
+  }
+
+  const saveTheBook = (e) => {
+      e.preventDefault();
+
+      db.collection('testuser').doc(bookTitle).set({
+          bookTitle,
+          chapters: chapters 
+      })
+
   }
 
     return (
@@ -117,6 +128,7 @@ function MainBody(){
                 </button>
                 <button
                     style={{marginTop: '50px'}}
+                    onClick={saveTheBook}
                 >
                     Save Book
                 </button>
