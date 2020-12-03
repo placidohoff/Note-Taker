@@ -1,0 +1,22 @@
+/* .mainbody{
+    
+  } */
+
+.mainbody__title{
+    margin-bottom: 15px;
+    font-size: 25px;
+}
+
+.mainbody__main{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .mainbody__options{
+    /* float: right; */
+    margin-left: 75px;
+  }
+
+  .mainbody__options >button{
+      margin-bottom: 10px;
+  }

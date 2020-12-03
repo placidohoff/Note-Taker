@@ -6,84 +6,38 @@ import Entry from './Entry.js'
 import NewEntry from './NewEntry.js'
 
 import { useStateValue } from './StateProvider.js'
-
+import Header from './Header';
+import MainBody from './MainBody';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import Login from './Login.js'
 
 
 function App(){
-  // constructor(){
-  //   super()
-  //   this.state = {
-  //     entries: entries,
-  //     localEntriesArray: [],
-  //     makeNewNote: false
-  //   }
-  // }
-  const [{chapters}, dispatch] = useStateValue();
-  const [entrees, setEntrees] = useState(entries)
-  const [makeNewNote, setMakeNewNote] = useState(false)
-  const [emptySection, setEmptySection] = useState([{title: '', content:''}])
-  
-  const makeNewEntry = (e) => {
-    dispatch({
-      type: 'ADD_CHAPTER',
-      item:{
-        title: 'New Subject',
-        bodies: [
-          {
-            title: 'New Section',
-            content: 'afasf afasfas asfasf afas fas afasf'
-                
-          }
-        ]
-      }
-    })
-  }
 
-    return (
-      <div className="app">
-        <div className="app__entries">
-          {chapters.map((entry, index) => {
-            return<>
-              
-              <NewEntry  
-                isSet={true}
-                title = {entry.title}
-                sections = {entry.bodies}
-                key={Math.random()}
-                entryIndex={index}
-              />
+  const [{}, dispatch] = useStateValue();
 
-              <br />
-            </>
-          })}
-          {
-            makeNewNote
-              ?
-              <div className="app_newEntry">
-                <NewEntry 
-                  isSet={false}
-                  title = ''
-                  sections = {emptySection}
-                  key={Math.random()}
-                />
-              </div>
-              :
-              <></>
-          }
-        </div>
-        <div className="app__options">
-          <button
-            //onClick={e => {setMakeNewNote(true)}}
-            onClick={makeNewEntry}
-          >
-            New Entry
-          </button>
-
-        </div>
+  return(
+  <Router>
+    <div className="app">
+      <Switch>
         
-      </div>
-    );
-  
+        <Route path="/login">
+          <Login />
+        </Route>
+
+        <Route path="/makenotes">
+          <Header />
+          <MainBody />
+        </Route>
+
+        <Route path="/">
+          <ViewBooks />
+        </Route>
+
+      </Switch>
+    </div>
+  </Router>
+  )
 }
 
 export default App;
