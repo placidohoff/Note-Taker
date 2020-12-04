@@ -60,14 +60,19 @@ const reducer = (state, action) => {
 
             }
         case 'DELETE_SECTION':
-            console.log('DELETE')
-            // let filteredChapters = state.chapters.filter(chapter => {
-            //     return chapter !== chapter.bodies[action.item.sectionIndex]
-            // })
             let filteredSections = state.chapters[action.item.chapterIndex].bodies.filter(section => {
                 return section !== state.chapters[action.item.chapterIndex].bodies[action.item.sectionIndex]
             })
             state.chapters[action.item.chapterIndex].bodies = filteredSections
+            return{
+                ...state,
+                chapters: [...state.chapters]
+            }
+        case 'DELETE_CHAPTER':
+            let filteredChapters = state.chapters.filter(chapter => {
+                return chapter !== state.chapters[action.item.chapterIndex]
+            })
+            state.chapters = filteredChapters
             return{
                 ...state,
                 chapters: [...state.chapters]

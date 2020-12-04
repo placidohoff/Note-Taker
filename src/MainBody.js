@@ -121,6 +121,13 @@ function MainBody(){
                 :
                 <></>
             }
+            <div
+                className='mainbody__newEntryButton'
+            >
+                <button>
+                +
+                </button>
+            </div>
             </Scroller>
             </div>
             <div className="mainbody__options">

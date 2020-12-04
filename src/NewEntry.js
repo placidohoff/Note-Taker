@@ -76,6 +76,18 @@ function NewEntry(props) {
                         >
                             &#9633;
                         </div>
+                        <div className="newEntry__maximizeButton"
+                             onClick={e => {
+                                 dispatch({
+                                     type: 'DELETE_CHAPTER',
+                                     item:{
+                                         chapterIndex: props.chapterIndex
+                                     }
+                                 })
+                             }}
+                        >
+                            X
+                        </div>
                     </div>
                     :
                     <form
