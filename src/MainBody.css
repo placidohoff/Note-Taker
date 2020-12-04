@@ -1,6 +1,7 @@
-/* .mainbody{
-    
-  } */
+.mainbody{
+    margin-left: 20px;  
+    width: 100%;  
+}
 
 .mainbody__title{
     margin-bottom: 15px;
@@ -15,6 +16,9 @@
   .mainbody__options{
     /* float: right; */
     margin-left: 75px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
   }
 
   .mainbody__options >button{

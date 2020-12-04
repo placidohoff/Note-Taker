@@ -33,7 +33,8 @@ function NewEntry(props) {
             type: 'ADD_CHAPTER_TITLE',
             item: {
                 title: chapterTitle,
-                entryIndex: props.entryIndex
+                entryIndex: props.entryIndex,
+                chapterIndex: props.chapterIndex
             }
 
         })
@@ -88,17 +89,22 @@ function NewEntry(props) {
             <div>
                 {
                     //console.log({thisChapter.sections[0]})
-                    thisChapter.sections.map(section => {
+                    thisChapter.sections.map((section,index) => {
                         //if(section.title !== '' && section.body !== ''){
+                            if(section){
                             return(
                             <NewSection
                                 isSet={props.isSet}
                                 title={section.title}
                                 body={section.content}
                                 makeSection={makeBody}
+                                entryIndex={props.entryIndex}
+                                chapterIndex={props.chapterIndex}
+                                sectionIndex={index}
                                 
                             />
                             )
+                            }
                         //}
                         
                     })
@@ -112,6 +118,8 @@ function NewEntry(props) {
                     body=''
                     makeSection={makeBody}
                     entryIndex={props.entryIndex}
+                    chapterIndex={props.chapterIndex}
+                    sectionIndex={sections.length}
                 /> 
                 :
                 <></>

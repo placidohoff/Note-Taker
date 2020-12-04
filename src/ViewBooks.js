@@ -3,6 +3,8 @@ import './ViewBooks.css'
 import { useStateValue } from './StateProvider.js'
 import { useHistory } from 'react-router-dom'
 import { db } from './firebase.js'
+import Header from './Header'
+
 
 function ViewBooks(){
 
@@ -13,6 +15,24 @@ function ViewBooks(){
     const history = useHistory();
 
     const makeNewNote = (e) => {
+        dispatch({
+            type: 'LOAD_BOOK',
+            item: {
+                chapters: [
+                    {
+                        title: 'First Subject',
+                        bodies: [
+                            {
+                                title: 'First Body',
+                                content: 'afasf afasfas asfasf afas fas afasf'
+                            
+                            }
+                        ]
+                    }
+                ],
+                bookTitle: 'New Book'
+            }
+        })
         history.push('/makenotes')
     }
 
@@ -44,6 +64,7 @@ function ViewBooks(){
     return(
         <div className="viewbooks">
             <div>Here is a collection of your notes:</div>
+            {/* {console.log(collection)} */}
             {
                 collection.length > 0 
                 ?
@@ -51,7 +72,21 @@ function ViewBooks(){
                     collection.map(book => {
                         if(book){
                             return(
-                            <div>{book.bookTitle}</div>
+                            <div 
+                                className="viewbooks__collection"
+                                onClick={e => {
+                                    dispatch({
+                                        type: 'LOAD_BOOK',
+                                        item: {
+                                            chapters: book.chapters,
+                                            bookTitle: book.bookTitle
+                                        }
+                                    })
+                                    history.push('/makenotes')
+                                }}    
+                            >
+                                {book.bookTitle}
+                            </div>
                             )
                         }
                     })

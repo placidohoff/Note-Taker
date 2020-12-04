@@ -4,9 +4,19 @@
 
 .newsection__title{
     margin-left: 5px;
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 
 .newsection__body{
     margin-left: 20px;
+    margin-top: -20px;
+}
+
+.newsection__finishTitle{
+    display: flex;
+    flex-direction: row;
+}
+
+.newsection__titleSymbol{
+    
 }

@@ -9,3 +9,13 @@
 .viewbooks__button{
     margin-top: 50px;
 }
+
+.viewbooks__collection{
+    border-style: groove;
+    width: 200px;
+    text-align: center;
+    margin-top: 10px;
+    border-radius:2em;
+    height: 30px;
+
+}

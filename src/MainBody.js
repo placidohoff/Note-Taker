@@ -8,6 +8,8 @@ import NewEntry from './NewEntry.js'
 import { useStateValue } from './StateProvider.js'
 import Scroller from './Scroller.js'
 import { db } from './firebase.js'
+import { useHistory } from 'react-router-dom'
+
 
 
 function MainBody(){
@@ -19,13 +21,14 @@ function MainBody(){
   //     makeNewNote: false
   //   }
   // }
-  const [{user, chapters}, dispatch] = useStateValue();
+  const [{user, chapters, bookTitle }, dispatch] = useStateValue();
   const [username, setUsername] = useState(user.split('@'))
   const [entrees, setEntrees] = useState(entries)
   const [makeNewNote, setMakeNewNote] = useState(false)
   const [emptySection, setEmptySection] = useState([{title: '', content:''}])
-  const [bookTitle, setBookTitle] = useState('New Notebook')
+  const [newTitle, setNewTitle] = useState(bookTitle)
   const [isBookTitleSet, setIsBookTitleSet] = useState(false)
+  const history = useHistory();
 
   const makeNewEntry = (e) => {
     dispatch({
@@ -67,14 +70,14 @@ function MainBody(){
                 <div
                     onClick={e => {setIsBookTitleSet(false)}}
                 >
-                    {bookTitle}
+                    {newTitle}
                 </div>
                 :
                 <form>
                 <input 
                     placeholder="Enter Title"
-                    value={bookTitle}
-                    onChange={e => {setBookTitle(e.target.value)}}
+                    value={newTitle}
+                    onChange={e => {setNewTitle(e.target.value)}}
                 />
                 <button
                     type='submit'
@@ -98,6 +101,7 @@ function MainBody(){
                     sections = {entry.bodies}
                     key={Math.random()}
                     entryIndex={index}
+                    chapterIndex={index}
                 />
 
                 <br />
@@ -127,11 +131,21 @@ function MainBody(){
                 >
                     New Entry
                 </button>
+
+                
                 <button
-                    style={{marginTop: '50px'}}
+                    style={{marginTop: '50px', height: '50px'}}
                     onClick={saveTheBook}
                 >
                     Save Book
+                </button>
+
+                <button
+                    //onClick={e => {setMakeNewNote(true)}}
+                    style={{height:'50px'}}
+                    onClick={e => {history.push('/')}}
+                >
+                    Exit 
                 </button>
 
         </div>

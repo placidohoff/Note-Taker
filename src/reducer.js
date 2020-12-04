@@ -24,7 +24,7 @@ const reducer = (state, action) => {
                 chapters:[...state.chapters, action.item]
             }
         case 'ADD_CHAPTER_TITLE':
-            state.chapters[action.item.entryIndex].title = action.item.title
+            state.chapters[action.item.chapterIndex].title = action.item.title
             console.log(state)
             return{
                 ...state,
@@ -32,8 +32,11 @@ const reducer = (state, action) => {
                 
             }
         case 'MAKE_SECTION':
-            console.log(state)
-            state.chapters[action.item.entryIndex].bodies = [...state.chapters[action.item.entryIndex].bodies, action.item]
+            //console.log(state)
+            console.log(state.chapters[action.item.entryIndex].bodies)
+            //if(action.item.entryIndex==0)
+            state.chapters[action.item.chapterIndex].bodies = [...state.chapters[action.item.chapterIndex].bodies, action.item]
+            //state.chapters[action.item.entryIndex].bodies[action.item.entryIndex] = action.item
             // for(let i = 0; i < state.chapters.length; i++){
             //     console.log('yo')
             // }
@@ -49,10 +52,23 @@ const reducer = (state, action) => {
                 // ]
                 chapters: [...state.chapters]
             }
+        case 'EDIT_SECTION':
+            state.chapters[action.item.chapterIndex].bodies[action.item.sectionIndex] = action.item
+            return{
+                ...state,
+                chapters: [...state.chapters]
+
+            }
         case 'SET_USER':
             return{
                 ...state,
                 user: action.item.user
+            }
+        case 'LOAD_BOOK':
+            return{
+                ...state,
+                chapters: action.item.chapters,
+                bookTitle: action.item.bookTitle
             }
         default:
             return state;
