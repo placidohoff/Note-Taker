@@ -10,3 +10,27 @@
     margin-bottom: 5px;
     margin-top: 3px;
 }
+
+.newEntry__minimizeButton{
+    margin-left: 100px;
+    cursor: default;
+    width: 20px;
+    text-align: center;
+    height: 20px;
+    
+}
+.newEntry__minimizeButton:hover{
+    background-color:grey;
+    
+}
+.newEntry__maximizeButton{
+    margin-left: 10px;
+    cursor: default;
+    width: 20px;
+    text-align: center;
+    height: 20px;
+}
+.newEntry__maximizeButton:hover{
+    background-color:grey;
+    
+}

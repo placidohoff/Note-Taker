@@ -56,117 +56,145 @@ function NewSection(props){
 
     return(
         <div className="newsection">
-            <div className="newsection__title">
-                {
-                    isSectionTitleSet
-                    ?
-                    <div className="newsection__finishTitle">
-                        
-                        <pre className="newsection__title">
+            <div className="newsection__main">
+                <div className="newsection__title">
+                    {
+                        isSectionTitleSet
+                        ?
+                        <div className="newsection__finishTitle">
                             
+                            <pre className="newsection__title">
+                                
+                                <pre 
+                                    onClick={e => {
+                                        setIsSectionTitleSet(false)
+                                        setIsThisSet(false)
+                                    }}
+                                    style={{display:'flex', flexDirection:'row'}}
+                                >
+                                        <div  className="newsection__titleSymbol">&bull; </div>
+                                        {sectionTitle}
+                                    </pre>
+                            </pre>
+                        </div>
+                        :
+                        <form
+                            onSubmit={e => {e.preventDefault()}}
+                            //className="newEntry__title"
+                        >
+                            <div style={{display:'flex', flexDirection:'row', marginLeft: '5px'}}>
+                                <div  className="newsection__titleSymbol">&bull; </div>
+                                <TextField 
+                                    id="outlined-multiline-flexible"
+                                    multiline
+                                    rowsMax={5}
+                                    placeholder="Enter section notes "
+                                    value={sectionTitle}
+                                    onChange= {e => {setSectionTitle(e.target.value)}}
+                                    style={{marginLeft:'5px'}}
+                                />
+                            
+                            <button
+                                type="submit"
+                                onClick={e => {setIsSectionTitleSet(true)}}
+                                style={{height: '20px'}}
+                            >
+                                Set
+                            </button>
+                            </div>
+                        </form>
+                    }
+                </div>
+                <div>
+                    {
+                        isSectionBodySet && isSectionTitleSet
+                        ?
+                        <pre className="newsection__body">
                             <pre 
+                                style={{whiteSpace:'pre-wrap', marginTop:'-20px', marginLeft: '15px'}}
                                 onClick={e => {
-                                    setIsSectionTitleSet(false)
+                                    setIsSectionBodySet(false)
                                     setIsThisSet(false)
                                 }}
-                                style={{display:'flex', flexDirection:'row'}}
-                            >
-                                    <div  className="newsection__titleSymbol">&bull; </div>
-                                    {sectionTitle}
-                                </pre>
+                                >
+                                    {sectionBody}
+                            </pre>
                         </pre>
-                    </div>
+                        :
+                        <form
+                            onSubmit={e => {e.preventDefault()}}
+                        >
+                            <div style={{display:'flex', flexDirection:'row'}}>
+                                <TextField
+                                    id="outlined-multiline-static"
+                                    
+                                    multiline
+                                    rows={4}
+                                    placeholder="Enter subnotes..."                    
+                                    variant="outlined"
+                                    value={sectionBody}
+                                    onChange={e => {setSectionBody(e.target.value)}}
+                                    style={{marginLeft: '25px'}}
+                                />
+                                <div style={{display:'flex', flexDirection:'column'}}>
+                                    <button
+                                        type="submit"
+                                        onClick={e => {setIsSectionBodySet(true)}}
+                                        style={{height:'20px'}}
+                                    >
+                                        Set
+                                    </button>
+                                    <button
+                                type="submit"
+                                onClick={e => {
+                                    setSectionBody('.............')
+                                    setIsSectionBodySet(true)
+                                }}
+                            >
+                                Discard
+                            </button>
+                                </div>
+                            </div>
+                        </form>
+                    
+                    }
+                </div>
+                {
+                    props.isSet && isThisSet
+                    ?
+                        <></>
                     :
-                    <form
-                        onSubmit={e => {e.preventDefault()}}
-                        //className="newEntry__title"
+                    <button
+                        onClick={makeSection}
+                        style={{marginLeft: '40px'}}
                     >
-                        <TextField 
-                            id="outlined-multiline-flexible"
-                            multiline
-                            rowsMax={5}
-                            placeholder="Enter Section Title"
-                            value={sectionTitle}
-                            onChange= {e => {setSectionTitle(e.target.value)} }
-                        />
-                        <button
-                            type="submit"
-                            onClick={e => {setIsSectionTitleSet(true)}}
-                        >
-                            Set
-                        </button>
-                    </form>
+                        Save
+                    </button>
                 }
-             </div>
-             <div>
-                 {
-                     isSectionBodySet
-                     ?
-                    <pre className="newsection__body">
-                        <pre 
-                            style={{whiteSpace:'pre-wrap', marginTop:'-20px', marginLeft: '15px'}}
-                            onClick={e => {
-                                setIsSectionBodySet(false)
-                                setIsThisSet(false)
-                            }}
-                            >
-                                {sectionBody}
-                        </pre>
-                    </pre>
-                     :
-                    <form
-                        onSubmit={e => {e.preventDefault()}}
-                     >
-                        <TextField
-                            id="outlined-multiline-static"
+                </div>
+            <div className="newsection__delete">
+                {
+                    isSectionTitleSet && isSectionBodySet
+                    ?
+                    <span
+                        onClick={e=>{
                             
-                            multiline
-                            rows={4}
-                            placeholder="Body notes..."                    
-                            variant="outlined"
-                            value={sectionBody}
-                            onChange={e => {setSectionBody(e.target.value)}}
-                        />
-                        <button
-                            type="submit"
-                            onClick={e => {setIsSectionBodySet(true)}}
-                        >
-                            Set
-                        </button>
-                        <button
-                            type="submit"
-                            onClick={e => {
-                                setSectionBody('.............')
-                                setIsSectionBodySet(true)
-                            }}
-                        >
-                            Discard
-                        </button>
-                    </form>
-                
-                }
-             </div>
-             {
-                 props.isSet && isThisSet
-                 ?
+                            dispatch({
+                                type: 'DELETE_SECTION',
+                                item:{
+                                    chapterIndex: props.chapterIndex,
+                                    sectionIndex: props.sectionIndex
+                                }
+                            }) 
+                        
+                        }}
+                    >
+                        X
+                    </span>
+                    :
                     <></>
-                :
-                <button
-                    //onClick={props.makeSection}
-                    // onClick={
-                    //     dispatch({
-                    //         type: 'MAKE_SECTION',
-                    //         item:{
-                    //             title: sectionTitle,
-                    //             content: sectionBody
-                    //         }
-                    //     })
-                    // }
-                    onClick={makeSection}
-                >
-                    Save
-                </button>
-            }
+                }
+            </div>
         </div>
     )
 }

@@ -66,6 +66,16 @@ function NewEntry(props) {
                     ?
                     <div className="newEntry__chapterTitle">
                         <div onClick={e => {setIsChapterTitleSet(false)}}>{chapterTitle}</div>
+                        <div className="newEntry__minimizeButton"
+                             onClick={e => {}}
+                        >
+                            -
+                        </div>
+                        <div className="newEntry__maximizeButton"
+                             onClick={e => {}}
+                        >
+                            &#9633;
+                        </div>
                     </div>
                     :
                     <form
@@ -128,8 +138,12 @@ function NewEntry(props) {
             <br />
             <button
                 onClick={openNewSection}
+                style={{
+                    marginLeft: '20px',
+                    marginBottom: '20px'
+                }}
             >
-                Add New
+                +
             </button>
             
          </div>

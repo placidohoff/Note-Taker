@@ -1,5 +1,6 @@
 .newsection{
-
+    display: flex;
+    flex-direction: 'row';
 }
 
 .newsection__title{
@@ -19,4 +20,10 @@
 
 .newsection__titleSymbol{
     
+}
+
+.newsection__delete{
+    margin-left: 40px;
+    margin-top: 20px;
+    cursor: default;
 }
