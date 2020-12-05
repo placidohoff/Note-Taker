@@ -27,7 +27,7 @@ function MainBody(){
   const [makeNewNote, setMakeNewNote] = useState(false)
   const [emptySection, setEmptySection] = useState([{title: '', content:''}])
   const [newTitle, setNewTitle] = useState(bookTitle)
-  const [isBookTitleSet, setIsBookTitleSet] = useState(false)
+  const [isBookTitleSet, setIsBookTitleSet] = useState(true)
   const history = useHistory();
 
   const makeNewEntry = (e) => {
@@ -124,7 +124,10 @@ function MainBody(){
             <div
                 className='mainbody__newEntryButton'
             >
-                <button>
+                <button
+                    style={{height:'30px', width:'30px', marginLeft:'20px'}}
+                    onClick={makeNewEntry}
+                >
                 +
                 </button>
             </div>
@@ -141,7 +144,7 @@ function MainBody(){
 
                 
                 <button
-                    style={{marginTop: '50px', height: '50px'}}
+                    style={{height: '50px'}}
                     onClick={saveTheBook}
                 >
                     Save Book

@@ -1,36 +1,181 @@
-.newEntry{
-    border: 1px solid black;
-    width: 300px;
-}
 
-.newEntry__chapterTitle{
-    display: flex;
-    flex-direction: row;
-    font-weight: bold;
-    margin-bottom: 5px;
-    margin-top: 3px;
-}
 
-.newEntry__minimizeButton{
-    margin-left: 100px;
-    cursor: default;
-    width: 20px;
-    text-align: center;
-    height: 20px;
+
+
+@media only screen and (min-width: 600px) {
+    .newEntry{
+        border: 1px solid black;
+        width: 400px;
+        margin-left: 25px;
+        margin-top: 10px;
+        /* width: 100%; */
+    }
+
+    .newEntry__chapterTitle{
+        display: flex;
+        flex-direction: row;
+        font-weight: bold;
+        margin-bottom: 5px;
+        margin-top: 3px;
+        margin-left: 5px;
+        /* border-bottom: 1px solid black; */
+        /* border: 1px solid black */
+    }
+    .newEntry__chapterTitleContainer{
+        
+        border: 1px solid black
+    }
     
-}
-.newEntry__minimizeButton:hover{
-    background-color:grey;
+    .newEntry__minimizeButton{
+        margin-left: 200px;
+        cursor: default;
+        width: 20px;
+        text-align: center;
+        height: 20px;
+        /* font-weight: normal; */
+        /* margin-top: -4px; */
+        
+    }
+    .newEntry__minimizeButton:hover{
+        background-color:grey;
+        
+    }
+    .newEntry__maximizeButton{
+        margin-left: 10px;
+        cursor: default;
+        width: 20px;
+        text-align: center;
+        height: 20px;
+        /* font-weight: normal; */
+        font-size: small;
+        margin-top: 4px;
+        font-weight: bolder;
+    }
+    .newEntry__maximizeButton:hover{
+        background-color:grey;
+        
+    }
+    .newEntry__addNewButton{
+        margin-left: 15px;
+        margin-bottom: 20px;
+    }
+  }
+
+@media only screen and (max-width: 600px) {
+    .newEntry{
+        border: 1px solid black;
+        /* width: 400px; */
+        /* margin-left: 25px; */
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .newEntry__chapterTitle{
+        display: flex;
+        flex-direction: row;
+        font-weight: bold;
+        margin-bottom: 5px;
+        margin-top: 3px;
+        margin-left: 5px;
+    }
+
+    .newEntry__chapterTitleContainer{
+        
+        border: 1px solid black
+    }
     
-}
-.newEntry__maximizeButton{
-    margin-left: 10px;
-    cursor: default;
-    width: 20px;
-    text-align: center;
-    height: 20px;
-}
-.newEntry__maximizeButton:hover{
-    background-color:grey;
     
-}
+    .newEntry__minimizeButton{
+        margin-left: 200px;
+        cursor: default;
+        width: 20px;
+        text-align: center;
+        height: 20px;
+        /* font-weight: normal; */
+        /* margin-top: -4px; */
+        
+    }
+    .newEntry__minimizeButton:hover{
+        background-color:grey;
+        
+    }
+    .newEntry__maximizeButton{
+        margin-left: 10px;
+        cursor: default;
+        width: 20px;
+        text-align: center;
+        height: 20px;
+        font-weight: normal;
+        font-size: small;
+        margin-top: 4px;
+    }
+    .newEntry__maximizeButton:hover{
+        background-color:grey;
+        
+    }
+    .newEntry__addNewButton{
+        margin-left: 15px;
+        margin-bottom: 20px;
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    .newEntry{
+        border: 1px solid black;
+        /* width: 400px; */
+        /* margin-left: 25px; */
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .newEntry__chapterTitle{
+        display: flex;
+        flex-direction: row;
+        font-weight: bold;
+        margin-bottom: 5px;
+        margin-top: 3px;
+        margin-left: 5px;
+        /* border-bottom: 1px solid; */
+    }
+
+    .newEntry__chapterTitleContainer{
+        
+        border: 1px solid black
+    }
+    
+    
+    .newEntry__minimizeButton{
+        margin-left: 200px;
+        cursor: default;
+        width: 20px;
+        text-align: center;
+        height: 20px;
+        /* font-weight: normal; */
+        /* margin-top: -4px; */
+        
+    }
+    .newEntry__minimizeButton:hover{
+        background-color:grey;
+        
+    }
+    .newEntry__maximizeButton{
+        margin-left: 10px;
+        cursor: default;
+        width: 20px;
+        text-align: center;
+        height: 20px;
+        font-weight: normal;
+        font-size: small;
+        margin-top: 4px;
+    }
+    .newEntry__maximizeButton:hover{
+        background-color:grey;
+        
+    }
+
+    .newEntry__addNewButton{
+        margin-left: 15px;
+        margin-bottom: 20px;
+    }
+  }
+

@@ -1,6 +1,8 @@
 .mainbody{
-    margin-left: 20px;  
+    /* margin-left: 20px;   */
     width: 100%;  
+    /* width: 500px; */
+    /* margin-left: 25%; */
 }
 
 .mainbody__title{
@@ -10,17 +12,26 @@
 
 .mainbody__main{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    /* width: 200px; */
   }
   
   .mainbody__options{
     /* float: right; */
     margin-left: 75px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-right: 10px;
+    margin-top: 20px;
   }
 
   .mainbody__options >button{
       margin-bottom: 10px;
+      width: 200px;
+      margin-left: 10px;
+
+  }
+
+  .mainbody__entries{
+      /* margin-left:25%; */
   }
