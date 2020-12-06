@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import './NewEntry.css'
-import {TextField} from '@material-ui/core'
+import {TextField, Button} from '@material-ui/core'
 import NewSection from './NewSection.js'
 import { useStateValue } from './StateProvider.js';
+
 
 
 function NewEntry(props) {
@@ -96,18 +97,20 @@ function NewEntry(props) {
                    <form
                    onSubmit={e => {e.preventDefault()}}
                    //className="newEntry__title"
-               >
-               <input 
-                   placeholder="Enter Title"
-                   value={chapterTitle}
-                   onChange= {e => {setChapterTitle(e.target.value)}} 
-               />
-               <button
-                   type="submit"
-                   onClick={makeChapterTitle}
-               >
-                   Set
-               </button>
+                    >
+                        <input 
+                            placeholder="Enter Title"
+                            value={chapterTitle}
+                            onChange= {e => {setChapterTitle(e.target.value)}} 
+                            className="newEntry__titleInputBox"
+                        />
+                        <button
+                            type="submit"
+                            onClick={makeChapterTitle}
+                            className="newEntry__titleSetButton"
+                        >
+                            Set
+                        </button>
                </form>
                }
             </div>
@@ -160,16 +163,36 @@ function NewEntry(props) {
                ?
                 <></>
                 :
+                // <>
+                // <Button
+                //     onClick={openNewSection}
+                //     style={{
+                //         marginLeft: '50px',
+                //         fontSize:'30px'
+                //         // float: 'left'
+                //         // width: 'px'
+                //     }}
+                //     className="newEntry__addNewButton"
+                //     color="primary"
+                //     variant="outlined"
+                //     size="small"
+                    
+                // >
+                //     	&#65291;
+                // </Button>
                 <button
-                    onClick={openNewSection}
-                    style={{
-                        // marginLeft: '70px;',
-                        
-                    }}
-                    className="newEntry__addNewButton"
+                onClick={openNewSection}
+                style={{
+                    marginLeft: '20px',
+                    
+                    // float: 'left'
+                    // width: 'px'
+                }}
+                className="newEntry__addNewButton"
                 >
-                    +
+                    add new
                 </button>
+                
             }
            
         </div>

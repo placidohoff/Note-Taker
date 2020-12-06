@@ -5,7 +5,8 @@ export const initialState = {
             bodies: [
                 {
                     title: 'First Body',
-                    content: 'afasf afasfas asfasf afas fas afasf'
+                    content: '.............'
+                    
                 
                 }
             ]

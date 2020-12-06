@@ -63,15 +63,27 @@ function MainBody(){
 
     return (
       <div className="mainbody">
-        <div className="mainbody__title">
+
+       <div> 
+        <div className="mainbody__titleContainer">
+        <div 
+            className="mainbody__title"
+            
+            >
         {
                 isBookTitleSet 
                 ?
+                <>
                 <div
                     onClick={e => {setIsBookTitleSet(false)}}
+                    style={{}}
                 >
                     {newTitle}
                 </div>
+                
+                
+            
+                </>
                 :
                 <form>
                 <input 
@@ -87,6 +99,61 @@ function MainBody(){
                 </button>
                 </form>
             }
+            
+            </div>
+        </div>
+        <div className="mainbody__hamurgerContainer">
+        <button 
+            class="mainbody__hamburger"
+            onClick={e => {
+                let navbar = document.querySelector('.mainbody__navbar')
+                let ham = document.querySelector('.mainbody__hamburger')
+
+                navbar.classList.toggle("mainbody__showNavAnimate")
+                ham.classList.toggle("mainbody__hamburgerClose")
+
+            }}
+            ></button>
+            <nav class="mainbody__navbar">
+                <ul style={{marginTop:'60px'}}>
+                <li style={{marginTop:'20px'}}><a class="menuLink" href="#">Home</a></li>
+                <li><a class="menuLink" href="#">Profile</a></li>
+                <li><a class="menuLink" href="#">About</a></li>
+                <li><a class="menuLink" href="#">Contacts</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div 
+                className="mainbody__options"
+                // style={{float:'right', marginTop:'-40px', position:'relative'}}
+                //  style={{marginLeft:'500px', position:'fixed', marginTop:'-50px'}}
+                 >
+                <button
+                    //onClick={e => {setMakeNewNote(true)}}
+                    onClick={makeNewEntry}
+                    style={{float:'left'}}
+                >
+                    New Entry
+                </button>
+
+                
+                <button
+                    
+                    onClick={saveTheBook}
+                >
+                    Save Book
+                </button>
+
+                <button
+                    //onClick={e => {setMakeNewNote(true)}}
+                    
+                    onClick={e => {history.push('/')}}
+                >
+                    Exit 
+                </button>
+                
+
+            </div>
         </div>
         <div className="mainbody__main">
             <div className="mainbody__entries">
@@ -125,40 +192,16 @@ function MainBody(){
                 className='mainbody__newEntryButton'
             >
                 <button
-                    style={{height:'30px', width:'30px', marginLeft:'20px'}}
+
                     onClick={makeNewEntry}
+                    className="mainbody__addNewButton"
                 >
-                +
+                New Entry
                 </button>
             </div>
             </Scroller>
             </div>
-            <div className="mainbody__options">
-                <button
-                    //onClick={e => {setMakeNewNote(true)}}
-                    style={{height:'50px'}}
-                    onClick={makeNewEntry}
-                >
-                    New Entry
-                </button>
-
-                
-                <button
-                    style={{height: '50px'}}
-                    onClick={saveTheBook}
-                >
-                    Save Book
-                </button>
-
-                <button
-                    //onClick={e => {setMakeNewNote(true)}}
-                    style={{height:'50px'}}
-                    onClick={e => {history.push('/')}}
-                >
-                    Exit 
-                </button>
-
-        </div>
+            
         </div>
       </div>
     );

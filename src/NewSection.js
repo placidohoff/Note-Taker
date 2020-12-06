@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {TextField} from '@material-ui/core'
+import {TextField, Button} from '@material-ui/core'
 import './NewSection.css';
 import { useStateValue } from './StateProvider';
 
@@ -68,14 +68,23 @@ function NewSection(props){
                                 <pre 
                                     onClick={e => {
                                         setIsSectionTitleSet(false)
-                                        setIsThisSet(false)
+                                        // setIsThisSet(false)
                                     }}
                                     style={{display:'flex', flexDirection:'row'}}
                                 >
                                         <div  className="newsection__titleSymbol">&bull; </div>
                                         {sectionTitle}
                                     </pre>
+                                    <span 
+                                        className="newsection__edit"
+                                        onClick={e => {setIsSectionTitleSet(false)}}    
+                                    >
+                                        
+                                        &#9998;
+                                        
+                                    </span>
                             </pre>
+                            
                         </div>
                         :
                         <form
@@ -119,6 +128,7 @@ function NewSection(props){
                                 >
                                     {sectionBody}
                             </pre>
+                            
                         </pre>
                         :
                         <form
@@ -140,18 +150,26 @@ function NewSection(props){
                                     <button
                                         type="submit"
                                         onClick={e => {setIsSectionBodySet(true)}}
-                                        style={{height:'20px'}}
+                                        // style={{height:'20px'}}
+                                        className="section__bodyOptions"
                                     >
                                         Set
                                     </button>
                                     <button
-                                type="submit"
-                                onClick={e => {
-                                    setSectionBody('.............')
-                                    setIsSectionBodySet(true)
-                                }}
-                            >
-                                Discard
+                                        type="submit"
+                                        onClick={e => {
+                                            setSectionBody('.............')
+                                            setIsSectionBodySet(true)
+                                        }}
+                                        className="section__bodyOptions"
+                                        style={{
+                                            color: 'black', 
+                                            fontWeight: 'normal', 
+                                            fontSize:'11px', 
+                                            textAlign:'center'
+                                        }}
+                                    >
+                                X
                             </button>
                                 </div>
                             </div>
@@ -164,18 +182,22 @@ function NewSection(props){
                     ?
                         <></>
                     :
-                    <button
+                    <Button
                         onClick={makeSection}
                         style={{marginLeft: '40px'}}
+                        color="primary"
+                        variant="contained"
                     >
                         Save
-                    </button>
+                    </Button>
                 }
                 </div>
             <div className="newsection__delete">
                 {
                     isSectionTitleSet && isSectionBodySet
                     ?
+                    <>
+                    
                     <span
                         onClick={e=>{
                             
@@ -188,9 +210,11 @@ function NewSection(props){
                             }) 
                         
                         }}
+                        className="newsection__deleteButton"
                     >
-                        X
+                        &nbsp;x&nbsp;
                     </span>
+                    </>
                     :
                     <></>
                 }
