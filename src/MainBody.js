@@ -105,6 +105,7 @@ function MainBody(){
         <div className="mainbody__hamurgerContainer">
         <button 
             class="mainbody__hamburger"
+            style={{}}
             onClick={e => {
                 let navbar = document.querySelector('.mainbody__navbar')
                 let ham = document.querySelector('.mainbody__hamburger')
@@ -115,11 +116,10 @@ function MainBody(){
             }}
             ></button>
             <nav class="mainbody__navbar">
-                <ul style={{marginTop:'60px'}}>
-                <li style={{marginTop:'20px'}}><a class="menuLink" href="#">Home</a></li>
-                <li><a class="menuLink" href="#">Profile</a></li>
-                <li><a class="menuLink" href="#">About</a></li>
-                <li><a class="menuLink" href="#">Contacts</a></li>
+                <ul style={{}}>
+                <li className="navbar_first" style={{}}>New Entry</li>
+                <li>Save Book</li>
+                <li>Exit</li>
                 </ul>
             </nav>
         </div>
