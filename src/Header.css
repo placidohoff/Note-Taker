@@ -4,6 +4,8 @@
     border-style: solid;
     height: 40px;
     border-width: 1px;
+    background-color: black;
+    color: white;
     /* color: */
 }
 

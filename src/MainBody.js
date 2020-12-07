@@ -90,10 +90,18 @@ function MainBody(){
                     placeholder="Enter Title"
                     value={newTitle}
                     onChange={e => {setNewTitle(e.target.value)}}
+                    className="mainbody__titleBox"
+                    style={{
+                        
+                    }}
                 />
                 <button
                     type='submit'
                     onClick={makeNotebookTitle}
+                    style={{
+                        
+                    }}
+                    className="mainbody__setTitle"
                 >
                     Set Title
                 </button>
@@ -117,9 +125,15 @@ function MainBody(){
             ></button>
             <nav class="mainbody__navbar">
                 <ul style={{}}>
-                <li className="navbar_first" style={{}}>New Entry</li>
-                <li>Save Book</li>
-                <li>Exit</li>
+                <li 
+                    onClick={makeNewEntry}
+                    className="navbar_first" style={{}}>New Entry</li>
+                <li
+                    onClick={saveTheBook}
+                >Save Book</li>
+                <li
+                    onClick={e => {history.push('/')}}
+                >Exit</li>
                 </ul>
             </nav>
         </div>

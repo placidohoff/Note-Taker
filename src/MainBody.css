@@ -7,8 +7,21 @@
     }
     
     .mainbody__title{
-        margin-bottom: 15px;
-        font-size: 25px;
+        margin-bottom: -5px;
+        font-size: 35px;
+        margin-left: 10px
+         
+    }
+
+    .mainbody__titleBox{
+      height: 40px;
+      font-size: 30px;
+    }
+
+    .mainbody__setTitle{
+      height: 40px;
+      margin-top: 15px;
+      /* margin-bottom: 10px; */
     }
     
     .mainbody__main{
@@ -81,6 +94,17 @@
     .mainbody__title{
         margin-bottom: 15px;
         font-size: 25px;
+    }
+
+    .mainbody__titleBox{
+      height: 40px;
+      font-size: 30px;
+    }
+
+    .mainbody__setTitle{
+      height: 40px;
+      margin-top: 15px;
+      /* margin-bottom: 10px; */
     }
     
     .mainbody__main{
@@ -212,6 +236,18 @@
     .mainbody__title{
         margin-bottom: 15px;
         font-size: 25px;
+    }
+
+    .mainbody__titleBox{
+      height: 40px;
+      font-size: 15px;
+    }
+
+    .mainbody__setTitle{
+      height: 40px;
+      margin-top: 15px;
+      
+      /* margin-bottom: 10px; */
     }
     
     .mainbody__main{
