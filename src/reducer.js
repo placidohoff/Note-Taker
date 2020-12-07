@@ -19,6 +19,26 @@ export const initialState = {
 
 const reducer = (state, action) => {
     switch(action.type){
+        case 'SAVE_TITLE':
+            return{
+                ...state,
+                bookTitle: action.item.title
+            }
+        case 'SAVE_BOOK':
+            
+            let chaps = action.item.chapters;
+            let title = action.item.bookTitle;
+            state.chapters = action.item.chapters;
+            state.bookTitle = action.item.bookTitle;
+            console.log(state)
+            console.log(state)
+            return{
+                
+                chapters: action.item.chapters,
+                bookTitle: action.item.bookTitle,
+                user: action.item.user
+
+            }
         case 'ADD_CHAPTER':
             return{
                 ...state,
@@ -88,6 +108,11 @@ const reducer = (state, action) => {
                 ...state,
                 chapters: action.item.chapters,
                 bookTitle: action.item.bookTitle
+            }
+        case 'SIGN_OUT':
+            return{
+                ...state,
+                user: ''
             }
         default:
             return state;

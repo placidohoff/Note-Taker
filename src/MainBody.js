@@ -49,16 +49,34 @@ function MainBody(){
   const makeNotebookTitle = (e) =>{
       e.preventDefault()
       setIsBookTitleSet(true)
+      dispatch({
+          type: 'SAVE_TITLE',
+          item: {
+              title: newTitle
+          }
+
+      })
   }
 
   const saveTheBook = (e) => {
       e.preventDefault();
 
-      db.collection(username[0]).doc(bookTitle).set({
-          bookTitle,
-          chapters: chapters 
+      //console.log(username[0])
+      dispatch({
+          type: 'SAVE_BOOK',
+          item:{
+            bookTitle: newTitle,
+            chapters: chapters,
+            user: user
+          }
       })
-
+      try{db.collection(username[0]).doc(bookTitle).set({
+          bookTitle:bookTitle,
+          chapters: chapters 
+      })}
+      catch(err){
+        console.log(err)
+      }
   }
 
     return (
