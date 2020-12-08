@@ -11,12 +11,15 @@ function Header(){
 
     return(
         <div className="header">
-            <div style={{float: 'left'}}>Welcome <span className='header__username'>{username[0]}</span></div>
+            <div style={{/*float: 'left'*/left:'5px', position: 'absolute'}}>Welcome <span className='header__username'>{username[0]}</span></div>
             <div 
                 style={{
-                    float: 'right',
+                    // float: 'right',
+                    position:'absolute', 
+                    right: '35px',
                     fontSize: 'small',
-                    textDecoration: 'underline'
+                    textDecoration: 'underline',
+                    cursor: 'default'
                 }}
                 onClick={e => {
                     dispatch({

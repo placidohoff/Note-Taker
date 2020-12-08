@@ -32,13 +32,13 @@
       
       .mainbody__options{
         /* float: right; */
-        margin-left: 460px;
+        /* margin-left: 460px; */
         position:fixed;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         /* margin-right: 30px; */
-        margin-top: -50px;
-        right: 20px
+        margin-top: -40px;
+        right: 80px
 
         
       }
@@ -83,7 +83,7 @@
         color: black;
       }
 }
-@media only screen and (max-width: 640px){
+@media only screen and (max-width: 620px){
     .mainbody{
         /* margin-left: 20px;   */
         width: 100%;  
@@ -135,11 +135,11 @@
       }
 
       .mainbody__hamburger{
-        position: fixed;
+        position: absolute;
         /* always keep ham on top of everything */
         z-index: 1000;
         top: 20px;
-        right: 20px;
+        right: 50px;
         width: 36px;
         height: 36px;
         border: none;

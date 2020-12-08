@@ -130,7 +130,7 @@ function MainBody(){
         </div>
         <div className="mainbody__hamurgerContainer">
         <button 
-            class="mainbody__hamburger"
+            className="mainbody__hamburger"
             style={{}}
             onClick={e => {
                 let navbar = document.querySelector('.mainbody__navbar')
@@ -141,7 +141,7 @@ function MainBody(){
 
             }}
             ></button>
-            <nav class="mainbody__navbar">
+            <nav className="mainbody__navbar">
                 <ul style={{}}>
                 <li 
                     onClick={makeNewEntry}
@@ -172,6 +172,7 @@ function MainBody(){
                 <button
                     
                     onClick={saveTheBook}
+                    style={{marginTop: '15px'}}
                 >
                     Save Book
                 </button>

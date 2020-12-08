@@ -2,6 +2,15 @@
     margin-left: 25%;   
 }
 
+.login__logo{
+    /* background-image: url("https://see.fontimg.com/api/renderfont4/aYJm/eyJyIjoiZnMiLCJoIjo2NSwidyI6MTAwMCwiZnMiOjY1LCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/Tm90ZWJvb2sgT25saW5l/fm-college-team.png"); */
+    font-family: fantasy;
+    /* text-decoration: underline; */
+    font-size: 20px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
 .login >form>input{
     height: 20px;
 }

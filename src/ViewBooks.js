@@ -73,6 +73,7 @@ function ViewBooks(){
                         if(book){
                             return(
                             <div 
+                                key={Math.random()}
                                 className="viewbooks__collection"
                                 onClick={e => {
                                     dispatch({
@@ -84,6 +85,7 @@ function ViewBooks(){
                                     })
                                     history.push('/makenotes')
                                 }}    
+                                style={{cursor:'default'}}
                             >
                                 {book.bookTitle}
                             </div>

@@ -133,6 +133,7 @@ function NewEntry(props) {
                             entryIndex={props.entryIndex}
                             chapterIndex={props.chapterIndex}
                             sectionIndex={index}
+                            key={Math.random()}
                             
                         />
                         )

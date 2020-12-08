@@ -84,6 +84,7 @@ function Login(){
 
     return(
         <div className="login">
+            <div className="login__logo">Notebook Online</div>
             <form>
                 <h5>Email</h5>
                 <input 

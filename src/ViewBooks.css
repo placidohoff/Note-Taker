@@ -1,5 +1,7 @@
 .viewbooks{
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .viewbooks__message{
@@ -8,6 +10,12 @@
 
 .viewbooks__button{
     margin-top: 50px;
+    height: 40px;
+    background-color: white;
+    border: 2px solid black;
+    font-style: normal;
+    font-weight: bold;
+    border-radius: 10px;
 }
 
 .viewbooks__collection{
