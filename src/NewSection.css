@@ -1,3 +1,6 @@
+pre {
+    white-space: pre-wrap;
+}
 @media only screen and (min-width: 600px){
     .newsection{
         display: flex;
@@ -9,6 +12,7 @@
         /* text-decoration: underline; */
         display: flex;
         flex-direction: 'row';
+        word-wrap: break-word;
     }
     .newsection__edit{
         margin-left: 10px;

@@ -18,12 +18,14 @@
         margin-bottom: 5px;
         margin-top: 3px;
         margin-left: 5px;
+        word-wrap: break-word;
         /* border-bottom: 1px solid black; */
         /* border: 1px solid black */
     }
     .newEntry__chapterTitleContainer{
         
-        border: 1px solid black
+        border: 1px solid black;
+        /* width: 150px; */
     }
     
     .newEntry__minimizeButton{
