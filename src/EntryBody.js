@@ -177,7 +177,7 @@ function EntryBody(props){
                                     placeholder="Enter section notes "
                                     value={mainEntry}
                                     onChange= {e => {setMainEntry(e.target.value)}}
-                                    style={{marginLeft:'5px'}}
+                                    style={{marginLeft:'5px', width:'275px'}}
                                     inputProps={{style: {fontSize: 10}}}
                                 />
                             
@@ -186,7 +186,8 @@ function EntryBody(props){
                                 onClick={saveEntry}
                                 style={{
                                     height: '20px',
-                                    marginRight: '5px'
+                                    marginRight: '5px',
+                                    marginTop: '10px'
                                 }}
                             >
                                 Set
@@ -194,7 +195,7 @@ function EntryBody(props){
                             <button
                                 type="submit"
                                 onClick={e => {setMainEntry(''); setIsMainEntrySet(true)}}
-                                style={{height: '20px'}}
+                                style={{height: '20px', marginTop: '10px'}}
                             >
                                 X
                             </button>

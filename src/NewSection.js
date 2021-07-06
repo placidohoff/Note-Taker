@@ -100,7 +100,7 @@ function NewSection(props){
                                     placeholder="Enter section notes "
                                     value={sectionTitle}
                                     onChange= {e => {setSectionTitle(e.target.value)}}
-                                    style={{marginLeft:'5px'}}
+                                    style={{marginLeft:'5px', width:'250px'}}
                                 />
                             
                             <button

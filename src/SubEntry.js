@@ -73,7 +73,7 @@ function SubEntry(props){
                             placeholder="Enter section notes "
                             value={mainEntry}
                             onChange= {e => {setMainEntry(e.target.value)}}
-                            style={{marginLeft:'5px'}}
+                            style={{marginLeft:'5px', width:'250px'}}
                             inputProps={{style: {fontSize: 10}}}
                         />
                         <div
