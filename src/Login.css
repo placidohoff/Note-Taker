@@ -2,6 +2,7 @@
     margin-left: 25%;   
 }
 
+
 .login__logo{
     /* background-image: url("https://see.fontimg.com/api/renderfont4/aYJm/eyJyIjoiZnMiLCJoIjo2NSwidyI6MTAwMCwiZnMiOjY1LCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/Tm90ZWJvb2sgT25saW5l/fm-college-team.png"); */
     font-family: fantasy;
@@ -15,10 +16,11 @@
     height: 20px;
 }
 
-.login >form>button{
+.login >form>div>button{
     margin-top: 20px;
     height: 30px;
     margin-left: 15px;
+    width: 200px;
 }
 
 .login__bottom{

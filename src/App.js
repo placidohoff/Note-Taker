@@ -11,6 +11,7 @@ import MainBody from './MainBody';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Login from './Login.js'
 import ViewBooks from './ViewBooks.js'
+import TestingBody from './TestingBody.js'
 
 
 function App(){
@@ -22,19 +23,36 @@ function App(){
     <div className="app">
       <Switch>
         
+        
+
+        {/* <Route path="/makenotes">
+          <Header />
+          <MainBody />
+        </Route> */}
+
+        <Route path="/makenotes">
+          <Header />
+          <TestingBody />
+        </Route>
+
+        {/* <Route path="/maketesting">
+          <Header />
+          <TestingBody />
+        </Route> */}
+
+        <Route path="/books">
+          <Header />
+          <ViewBooks />
+        </Route>
+
         <Route path="/login">
           <Login />
         </Route>
 
-        <Route path="/makenotes">
-          <Header />
-          <MainBody />
-        </Route>
-
         <Route path="/">
-          <Header />
-          <ViewBooks />
+          <Login />
         </Route>
+        
 
         {/* <Route path="/">
           <Header />

@@ -29,7 +29,7 @@ function NewSection(props){
                             sectionIndex: props.sectionIndex
                         }
                     })
-        }else{
+        }else{ 
             dispatch({
                 type: 'EDIT_SECTION',
                 item:{

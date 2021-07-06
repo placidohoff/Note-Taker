@@ -21,7 +21,7 @@ pre {
         height: 20px;
     }
     .newsection__edit:hover{
-        /* background-color: grey; */
+        background-color: grey;
     }
     .section__bodyOptions{
         margin-top: 10px;
@@ -60,6 +60,13 @@ pre {
         background-color: grey ;
         width: 50px;
     } */
+    .entryBody_subEntryAddSymbol{
+        margin-top: -5px;
+        margin-left: 35px;
+    }
+    .entrybody__options>span:hover{
+        background-color: grey;
+    }
 }
 @media only screen and (max-width: 600px){
     .newsection{
@@ -80,7 +87,7 @@ pre {
         height: 20px;
     }
     .newsection__edit:hover{
-        /* background-color: grey; */
+        background-color: grey;
     }
     .section__bodyOptions{
         margin-top: 10px;
@@ -108,6 +115,13 @@ pre {
         margin-left: 40px;
         margin-top: 20px;
         cursor: default;
+    }
+    .entryBody_subEntryAddSymbol{
+        margin-top: -10px;
+        margin-left: 35px;
+    }
+    .entrybody__options>span:hover{
+        background-color: grey;
     }
 }
 @media only screen and (max-width: 400px){
@@ -150,5 +164,14 @@ pre {
     .newsection__deleteButton{
         
     }
+    .entryBody_subEntryAddSymbol{
+        margin-top: -10px;
+        margin-left: 35px;
+    }
+    .entrybody__options>span:hover{
+        background-color: grey;
+    }
+
+    
 }
 

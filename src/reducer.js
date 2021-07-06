@@ -1,11 +1,16 @@
 export const initialState = {
     chapters: [
         {
-            title: 'First Subject',
+            title: 'First Chapter',
+            isMinimized: false,
             bodies: [
                 {
-                    title: 'First Body',
-                    content: '.............'
+                    content: '',
+                    isMinimized: false,
+                    subEntries: [
+                        
+                    ],
+                    isSet: false
                     
                 
                 }
@@ -19,6 +24,92 @@ export const initialState = {
 
 const reducer = (state, action) => {
     switch(action.type){
+        case 'DELETE_SUB_BODY':
+            let filtered = state.chapters[action.item.chapterIndex].bodies[action.item.sectionIndex].subEntries.filter(section => {
+                return section !== state.chapters[action.item.chapterIndex].bodies[action.item.sectionIndex].subEntries[action.item.subEntryIndex]
+            })
+            state.chapters[action.item.chapterIndex].bodies[action.item.sectionIndex].subEntries = filtered
+        return{
+            ...state,
+            chapters: [...state.chapters]
+
+        }
+        //Parent: NewEntry.js
+        case 'MINIMIZE_CHAPTER':
+            state.chapters[action.item.chapterIndex].isMinimized = true;
+            return{
+                ...state,
+                chapters: [...state.chapters]
+
+            }
+        //Parent: NewEntry.js
+        case 'MAXIMIZE_CHAPTER':
+            state.chapters[action.item.chapterIndex].isMinimized = false;
+            return{
+                ...state,
+                chapters: [...state.chapters]
+
+            }
+        //Parent: EntryBody.js
+        case 'MINIMIZE_ENTRY_BODY':
+            state.chapters[action.item.chapterIndex].bodies[action.item.sectionIndex].isMinimized = true;
+            return{
+                ...state,
+                chapters: [...state.chapters]
+
+            }
+        //Parent: EntryBody.js
+        case 'MAXIMIZE_ENTRY_BODY':
+            state.chapters[action.item.chapterIndex].bodies[action.item.sectionIndex].isMinimized = false;
+            return{
+                ...state,
+                chapters: [...state.chapters]
+
+            }
+        //Parent: TestingBody.js
+        case 'ADD_NEW_ENTRY':
+            state.chapters = [...state.chapters, action.item]
+            return{
+                ...state,
+                chapters: [...state.chapters]
+      
+            }
+        //Parent: NewEntry.js
+        case 'ADD_NEW_SECTION':
+            state.chapters[action.item.chapterIndex].bodies = [...state.chapters[action.item.chapterIndex].bodies, action.item]
+            return{
+                ...state,
+                chapters: [...state.chapters]
+            }
+        //Parent: SubEntry.js
+        case 'SET_SUB_BODY':
+            state.chapters[action.item.chapterIndex].bodies[action.item.sectionIndex].subEntries[action.item.subEntryIndex] = action.item
+            //state.chapters[action.item.chapterIndex].bodies[action.item.sectionIndex].subEntries[action.item.subEntryIndex] = [...state.chapters[action.item.chapterIndex].bodies[action.item.sectionIndex].subEntries, action.item]
+
+            return{
+                ...state,
+                chapters: [...state.chapters]
+
+            }
+        //Parent: EntryBody.js
+        case 'ADD_SUB_BODY':
+            // state.chapters[action.item.chapterIndex].bodies[action.item.sectionIndex].subEntries[action.item.subEntryIndex] = action.item
+            state.chapters[action.item.chapterIndex].bodies[action.item.sectionIndex].isMinimized = false
+            state.chapters[action.item.chapterIndex].bodies[action.item.sectionIndex].subEntries = [...state.chapters[action.item.chapterIndex].bodies[action.item.sectionIndex].subEntries, action.item]
+            
+            return{
+                ...state,
+                chapters: [...state.chapters]
+
+            }
+        //Parent: EntryBody.js
+        case 'SAVE_ENTRY_BODY':
+            state.chapters[action.item.chapterIndex].bodies[action.item.sectionIndex] = action.item
+            return{
+                ...state,
+                chapters: [...state.chapters]
+
+            }
         case 'SAVE_TITLE':
             return{
                 ...state,
@@ -26,19 +117,18 @@ const reducer = (state, action) => {
             }
         case 'SAVE_BOOK':
             
-            let chaps = action.item.chapters;
-            let title = action.item.bookTitle;
+            
             state.chapters = action.item.chapters;
             state.bookTitle = action.item.bookTitle;
             console.log(state)
             console.log(state)
             return{
-                
+                ...state,
                 chapters: action.item.chapters,
-                bookTitle: action.item.bookTitle,
-                user: action.item.user
+                
 
             }
+        
         case 'ADD_CHAPTER':
             return{
                 ...state,
@@ -46,7 +136,7 @@ const reducer = (state, action) => {
             }
         case 'ADD_CHAPTER_TITLE':
             state.chapters[action.item.chapterIndex].title = action.item.title
-            console.log(state)
+            //console.log(state)
             return{
                 ...state,
                 //chapters:[action.item.entryIndex].title:

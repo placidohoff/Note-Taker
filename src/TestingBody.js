@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './MainBody.css';
 
 import { entries } from "./entries.js";
@@ -9,10 +9,13 @@ import { useStateValue } from './StateProvider.js'
 import Scroller from './Scroller.js'
 import { db } from './firebase.js'
 import { useHistory } from 'react-router-dom'
+import MainBody from './MainBody.js'
+import EntryBody from './EntryBody.js'
+//import TestingBody from '.TestingBody.js'
+import gsap from 'gsap';
 
 
-
-function MainBody(){
+function TestingBody(){
   // constructor(){
   //   super()
   //   this.state = {
@@ -33,17 +36,22 @@ function MainBody(){
 
   const makeNewEntry = (e) => {
     dispatch({
-      type: 'ADD_CHAPTER',
-      item:{
-        title: 'New Subject',
-        bodies: [
-          {
-            title: 'New Section',
-            content: 'Click to change '
+        type: 'ADD_NEW_ENTRY',
+        item:{
+            title: 'New Chapter',
+            bodies: [
+                {
+                    content: '',
+                    isMinimized: false,
+                    subEntries: [
+                        
+                    ],
+                    isSet: false
+                    
                 
-          }
-        ]
-      }
+                }
+            ]
+        }
     })
   }
 
@@ -59,26 +67,67 @@ function MainBody(){
       })
   }
 
+  const animate = (flag) => {
+    if(flag == true){
+        gsap.to('.saveSuccess', {
+          display: 'inline',
+          y: -10,
+          duration: 1,
+          yoyoEase:true,
+          repeat:0,
+          onComplete: animateOut
+        })
+      }
+      else{
+        gsap.to('.saveFail', {
+          display: 'inline',
+          y: -10,
+          duration: 1,
+          yoyoEase:true,
+          repeat:0,
+          onComplete: animateOut
+        })
+      }
+  }
+
+  const animateOut = () => {
+    gsap.to('.saveSuccess', {
+      display: 'none'
+    })
+    gsap.to('.saveFail', {
+      display: 'none'
+    })
+  }
+
   const saveTheBook = (e) => {
       e.preventDefault();
 
-      //console.log(username[0])
+      
       dispatch({
           type: 'SAVE_BOOK',
           item:{
-            bookTitle: newTitle,
             chapters: chapters,
             user: user
           }
       })
-      try{db.collection(username[0]).doc(bookTitle).set({
+      try{db.collection(user).doc(bookTitle).set({
           bookTitle:bookTitle,
-          chapters: chapters 
-      })}
+          chapters: chapters
+      })
+      animate(true)
+    }
       catch(err){
         console.log(err)
+        animate(false)
       }
+    // animate(true)
   }
+
+  useEffect(() => {
+    if(user == '' || user == undefined){
+        history.push('/')
+    }
+  },[])
 
     return (
       <div className="mainbody">
@@ -170,13 +219,19 @@ function MainBody(){
                 </button>
 
                 
-                <button
+                
+                    <button
+                        
+                        onClick={saveTheBook}
+                        style={{
+                            marginTop: '15px',
+                            
                     
-                    onClick={saveTheBook}
-                    style={{marginTop: '15px'}}
-                >
-                    Save Book
-                </button>
+                        }}
+                    >
+                        Save Book
+                    </button>
+                    
 
                 <button
                     //onClick={e => {setMakeNewNote(true)}}
@@ -196,38 +251,77 @@ function MainBody(){
             {chapters.map((entry, index) => {
                 return<>
                 
-                <NewEntry  
+                {/* <EntryBody 
                     isSet={true}
-                    title = {entry.title}
+                    title = "test"
                     sections = {entry.bodies}
                     key={Math.random()}
                     entryIndex={index}
                     chapterIndex={index}
                     isMinimized={entry.isMinimized}
+                /> */}
+
+                <NewEntry  
+                    isSet={true}
+                    title = {entry.title}
+                    sections = {entry.bodies}
+                    key={Math.random()}
+                    // entryIndex={index}
+                    chapterIndex={index}
+                    isMinimized={entry.isMinimized}
+                    isTesting={true}
+                    content={entry.bodies}
                 />
 
                 <br />
                 </>
             })}
-            {
-                makeNewNote
-                ?
-                <div className="mainbody_newEntry">
-                    <NewEntry 
-                    isSet={false}
-                    title = ''
-                    sections = {emptySection}
-                    key={Math.random()}
-                    />
+            <div
+                className="saveBox"
+                style={{
+                    // border: '1px solid black',
+                    // width: '100px',
+                    // height: '100px',
+                    position: 'absolute',
+                    marginLeft: '40%',
+                    display: 'flex',
+                    flexDirection: 'column'
+                }}
+            >
+                <div
+                    className="saveSuccess"
+                    style={{
+                        width: '100px',
+                        backgroundColor: 'green',
+                        textAlign: 'center',
+                        height: '30px',
+                        fontWeight: 'bold',
+                        display: 'none'
+                    }}
+                >
+                    Save Sucess
                 </div>
-                :
-                <></>
-            }
+                <div
+                    className="saveFail"
+                    style={{
+                        width: '100px',
+                        backgroundColor: 'red',
+                        textAlign: 'center',
+                        height: '30px',
+                        fontWeight: 'bold',
+                        display: 'none'
+                    }}
+                >
+                    Save Failed
+                </div>
+            </div>
+
             <div
                 className='mainbody__newEntryButton'
             >
                 <button
 
+                    // onClick={makeNewEntry}
                     onClick={makeNewEntry}
                     className="mainbody__addNewButton"
                 >
@@ -243,4 +337,4 @@ function MainBody(){
   
 }
 
-export default MainBody;
+export default TestingBody;

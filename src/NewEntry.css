@@ -4,11 +4,22 @@
 
 @media only screen and (min-width: 600px) {
     .newEntry{
-        border: 1px solid black;
-        width: 400px;
+        /* width: 100%; */
+        border: 2px solid black;
+        width: 500px;
         margin-left: 25px;
         margin-top: 10px;
-        /* width: 100%; */
+        border-radius: 10px;
+
+        background-color: #fff; 
+        background-image: 
+        linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+        linear-gradient(#eee .1em, transparent .3em);
+        background-size: 100% 1.2em;
+        
+        overflow: hidden;
+        
+        /* background-image:url("data:image/gif;base64,R0lGODlhFgAsAJEAAP////n8/ePv9gAAACH5BAAHAP8ALAAAAAAWACwAAAInhI+py+0Po5y02ouz3rz7D4biSJbmiabqyrZuFsTyTNeBgOf6zgsFADs="); */
     }
 
     .newEntry__chapterTitle{
@@ -19,12 +30,16 @@
         margin-top: 3px;
         margin-left: 5px;
         word-wrap: break-word;
+        /* background-color: purple; */
         /* border-bottom: 1px solid black; */
         /* border: 1px solid black */
     }
     .newEntry__chapterTitleContainer{
         
         border: 1px solid black;
+        border-bottom: 3px solid black;
+        background-color: yellowgreen;
+        height: 55px;
         /* width: 150px; */
     }
     
@@ -67,7 +82,8 @@
     }
     .newEntry__titleInputBox{
         height: 40px;
-        font-size: large;   
+        font-size: large;
+        background-color: yellowgreen;   
     }
     .newEntry__titleSetButton{
         height: 40px;
@@ -76,11 +92,19 @@
 
 @media only screen and (max-width: 600px) {
     .newEntry{
-        border: 1px solid black;
-        /* width: 400px; */
-        /* margin-left: 25px; */
+        border: 2px solid black;
+        width: 500px;
+        margin-left: 25px;
         margin-top: 10px;
-        width: 100%;
+        border-radius: 10px;
+
+        background-color: #fff; 
+        background-image: 
+        linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+        linear-gradient(#eee .1em, transparent .3em);
+        background-size: 100% 1.2em;
+        
+        overflow: hidden;
     }
 
     .newEntry__chapterTitle{
@@ -94,7 +118,10 @@
 
     .newEntry__chapterTitleContainer{
         
-        border: 1px solid black
+        border: 1px solid black;
+        background-color: yellowgreen;
+        height: 55px;
+        border-bottom: 3px solid black
     }
     
     
@@ -136,7 +163,8 @@
     }
     .newEntry__titleInputBox{
         height: 40px;
-        font-size: large;   
+        font-size: large;
+        background-color: yellowgreen;   
     }
     .newEntry__titleSetButton{
         height: 40px;
@@ -145,11 +173,19 @@
 
   @media only screen and (max-width: 400px) {
     .newEntry{
-        border: 1px solid black;
-        /* width: 400px; */
-        /* margin-left: 25px; */
+        border: 2px solid black;
+        width: 400px;
+        margin-left: 25px;
         margin-top: 10px;
-        width: 100%;
+        border-radius: 10px;
+
+        background-color: #fff; 
+        background-image: 
+        linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+        linear-gradient(#eee .1em, transparent .3em);
+        background-size: 100% 1.2em;
+        
+        overflow: hidden;
     }
 
     .newEntry__chapterTitle{
@@ -164,7 +200,10 @@
 
     .newEntry__chapterTitleContainer{
         
-        border: 1px solid black
+        border: 1px solid black;
+        border-bottom: 3px solid black;
+        background-color: yellowgreen;
+        height: 55px;
     }
     
     
@@ -207,7 +246,8 @@
     }
     .newEntry__titleInputBox{
         height: 40px;
-        font-size: large;   
+        font-size: large;
+        background-color: yellowgreen;   
     }
     .newEntry__titleSetButton{
         height: 40px;

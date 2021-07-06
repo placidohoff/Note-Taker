@@ -3,7 +3,7 @@ import './NewEntry.css'
 import {TextField, Button} from '@material-ui/core'
 import NewSection from './NewSection.js'
 import { useStateValue } from './StateProvider.js';
-
+import EntryBody from './EntryBody.js'
 
 
 function NewEntry(props) {
@@ -25,7 +25,8 @@ function NewEntry(props) {
    const [thisChapter, setThisChapter] = useState({chapter: chapterTitle, sections:[]})
    const [makeNewSection, setMakeNewSection] = useState(false)
    const [{chapters}, dispatch] = useStateValue();
-   const [isMinimized, setIsMinimized] = useState(false)
+   const [isMinimized, setIsMinimized] = useState(props.isMinimized)
+   const [subEntries, setSubEntries] = useState(props.content.subEntries)
 
    const makeChapterTitle = (e) => {
        //alert(e.target.value)
@@ -45,8 +46,43 @@ function NewEntry(props) {
        setMakeNewSection(true)
    }
 
-   const makeBody = (e) =>{
-       alert('hello')
+
+   const makeNewEntry = (e) => {
+       dispatch({
+           type: 'ADD_NEW_SECTION',
+           item:{
+               chapterIndex: props.chapterIndex,
+               content: '',
+                
+               isMinimized: false,
+               isSet: false, 
+               subEntries: [
+                    
+                ]
+                
+            
+            
+           }
+       }) 
+   }
+
+   const maximize = (e) => {
+        dispatch({
+            type: 'MAXIMIZE_CHAPTER',
+            item: {
+                chapterIndex: props.chapterIndex
+            }
+        }) 
+ 
+   }
+
+   const minimize = (e) => {
+        dispatch({
+            type: 'MINIMIZE_CHAPTER',
+            item: {
+                chapterIndex: props.chapterIndex
+            }
+        }) 
    }
 
    useEffect(() => {
@@ -66,20 +102,39 @@ function NewEntry(props) {
                {
                    isChapterTitleSet
                    ?
-                   <div className="newEntry__chapterTitle">
-                       <div onClick={e => {setIsChapterTitleSet(false)}}>{chapterTitle}</div>
-                       <div className="newEntry__minimizeButton"
-                            onClick={e => {setIsMinimized(true)}}
+                   <div className="newEntry__chapterTitle"
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'row'
+                        // flexGrow: '1',
+                        // backgroundColor: 'red'
+                    }}
+                   >
+                       <div onClick={e => {setIsChapterTitleSet(false)}}
+                            style={{
+                                flexGrow: '1'
+                            }}
                        >
-                           &minus;
-                       </div>
-                       <div className="newEntry__maximizeButton"
-                            onClick={e => {setIsMinimized(false)}}
-                            style={{marginTop: '1px', fontSize: 'small', fontWeight: '900'}}
-                       >
-                           &#x1f5d6;
-                       </div>
-                       <div className="newEntry__maximizeButton"
+                           {chapterTitle}
+                        </div>
+                        <div
+                            style={{
+                                display:'flex',
+                                flexDirection: 'row'
+                            }}
+                        >
+                            <div className="newEntry__minimizeButton"
+                                    onClick={minimize}
+                            >
+                                &minus;
+                            </div>
+                            <div className="newEntry__maximizeButton"
+                                    onClick={maximize}
+                                    style={{marginTop: '1px', fontSize: 'small', fontWeight: '900'}}
+                            >
+                                &#x1f5d6;
+                            </div>
+                            <div className="newEntry__maximizeButton"
                             onClick={e => {
                                 dispatch({
                                     type: 'DELETE_CHAPTER',
@@ -88,10 +143,14 @@ function NewEntry(props) {
                                     }
                                 })
                             }}
-                            style={{marginTop: '2px'}}
+                            style={{
+                                marginTop: '2px',
+                                fontWeight: 'bold'
+                            }}
                        >
                            X
                        </div>
+                        </div>
                    </div>
                    :
                    <form
@@ -118,25 +177,53 @@ function NewEntry(props) {
                {
                    isMinimized 
                    ?
-                   <></>
+                    <div
+                        style={{
+                            marginLeft: '85px'
+                        }}
+                    >
+                        . . .<br/>. . .<br/>
+                    </div>
                    :
                    //console.log({thisChapter.sections[0]})
-                   thisChapter.sections.map((section,index) => {
+                   sections.map((section,index) => {
                     //if(section.title !== '' && section.body !== ''){
+                        
                         if(section){
-                        return(
-                        <NewSection
-                            isSet={props.isSet}
-                            title={section.title}
-                            body={section.content}
-                            makeSection={makeBody}
-                            entryIndex={props.entryIndex}
-                            chapterIndex={props.chapterIndex}
-                            sectionIndex={index}
-                            key={Math.random()}
-                            
-                        />
-                        )
+                            if(!props.isTesting){
+                                return(
+                                
+                                    <NewSection
+                                        isSet={section.isSet}
+                                        title={section.title}
+                                        body={section.content}
+                                        //makeSection={makeBody}
+                                        entryIndex={props.entryIndex}
+                                        chapterIndex={props.chapterIndex}
+                                        sectionIndex={index}
+                                        key={Math.random()}  
+                                        
+                                    />
+                                )
+                            }
+                            else{
+                                return(
+                                
+                                    <EntryBody
+                                        isSet={section.isSet}
+                                        //title={section.title}
+                                        //body={section.content}
+                                        //makeSection={makeBody}
+                                        // entryIndex={props.entryIndex}
+                                        chapterIndex={props.chapterIndex}
+                                        sectionIndex={index}
+                                        key={Math.random()}
+                                        content={section.content}
+                                        subEntries={section.subEntries}
+                                        isMinimized={section.isMinimized}
+                                    />
+                                )
+                            }
                         }
                     //}
                     
@@ -149,7 +236,7 @@ function NewEntry(props) {
                    isSet={false}
                    title=''
                    body=''
-                   makeSection={makeBody}
+                   //makeSection={makeBody}
                    entryIndex={props.entryIndex}
                    chapterIndex={props.chapterIndex}
                    sectionIndex={sections.length}
@@ -182,10 +269,11 @@ function NewEntry(props) {
                 //     	&#65291;
                 // </Button>
                 <button
-                onClick={openNewSection}
+                // onClick={openNewSection}
+                onClick={makeNewEntry}
                 style={{
                     marginLeft: '20px',
-                    
+                    marginTop: '15px'
                     // float: 'left'
                     // width: 'px'
                 }}

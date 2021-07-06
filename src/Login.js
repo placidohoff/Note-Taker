@@ -1,8 +1,11 @@
 import React, {useState} from 'react'
 import './Login.css'
-import { auth } from './firebase.js'
+import { auth, provider } from './firebase.js'
 import { useHistory } from 'react-router-dom'
 import { useStateValue } from './StateProvider.js'
+import firebase from 'firebase'
+// import { facebookProvider, githubProvider, googleProvider } from './config/authMethods'
+//import socialMediaAuth from './service/auth'
 
 
 
@@ -14,6 +17,30 @@ function Login(){
     const [{user, chapters}, dispatch] = useStateValue();
     const history = useHistory();
     
+    const handleOnClick = () => {
+        //const res = await socialMediaAuth(provider);
+        //onsole.log(res);
+        //let provider = new firebase.auth().GoogleAuthProvider()
+        auth
+        .signInWithPopup(provider)
+        .then(res=> {
+            //let data = res
+            //console.log(res.user.email)
+            dispatch({
+                type: 'SET_USER',
+                item: {
+                    user: res.user.email
+                }
+            })
+            history.push('/books')
+        })
+        .catch(e => {
+            console.log(e)
+        }
+
+        )
+
+    };
 
     const loginUser = (e) => {
         e.preventDefault();
@@ -33,7 +60,7 @@ function Login(){
                         user: email
                     }
                 })
-                history.push('/');
+                history.push('/books');
             })
             .catch(
                 error =>{ 
@@ -67,7 +94,7 @@ function Login(){
                         user: email
                     }
                 })
-                history.push('/')
+                history.push('/books')
             }
         })
         .catch(
@@ -85,6 +112,7 @@ function Login(){
     return(
         <div className="login">
             <div className="login__logo">Notebook Online</div>
+            
             <form>
                 <h5>Email</h5>
                 <input 
@@ -100,19 +128,39 @@ function Login(){
                     type="password"
                 />
                 <br />
-                <button
-                    type="submit"
-                    onClick={loginUser}
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        marginLeft: '-20px'
+                    }}
                 >
-                    Login
-                </button>
-                <button
-                    type="submit"
-                    onClick={createUser}
-                >
-                    Create
-                </button>
+                    <button
+                        type="submit"
+                        onClick={loginUser}
+                    >
+                        Login
+                    </button>
+                    <button
+                        type="submit"
+                        onClick={createUser}
+                    >
+                        Create
+                    </button>
+                
+                    <br />
+                    
+                    <button
+                        onClick={e => handleOnClick()}
+                        style={{
+                            backgroundColor: '#BF953F'
+                        }}
+                    >
+                        Sign-in With Google
+                    </button>
+                </div>
             </form>
+            
             {
                 userError
                 ?
@@ -121,7 +169,7 @@ function Login(){
                 <></>
             }
             <div className="login__bottom">
-                <p>*No need to use your actual email address. Treat it as a username to login to this specific application</p>
+                <p>*You do not need to use an actual email address. But use the same credentials to log-in again and see the notes you saved for that email</p>
             </div>
         </div>
     )

@@ -14,6 +14,22 @@ function ViewBooks(){
     
     const history = useHistory();
 
+    const confirmDelete = (title) => {
+        let answer = window.confirm("Are you sure you want to permanetly delete this book of notes?");
+        if (answer) {
+            try{
+                db.collection(username[0]).doc(title).delete()
+                    console.log("Document successfully deleted!");
+                }catch {
+                    console.log("Error removing document: ");
+                }
+        }
+        else {
+            //Do Nothing
+        }
+        
+    }
+
     const makeNewNote = (e) => {
         dispatch({
             type: 'LOAD_BOOK',
@@ -23,8 +39,37 @@ function ViewBooks(){
                         title: 'First Subject',
                         bodies: [
                             {
-                                title: 'First Body',
-                                content: 'afasf afasfas asfasf afas fas afasf'
+                                title: 'Click to change the title',
+                                content: 'Click to change the content',
+                                isMinimized: false
+                            
+                            }
+                        ]
+                    }
+                ],
+                bookTitle: 'New Book'
+            }
+        })
+        history.push('/makenotes')
+    }
+
+    const makeNewTesting = (e) => {
+        dispatch({
+            type: 'LOAD_BOOK',
+            item: {
+                chapters: [
+                    {
+                        title: 'First Chapter',
+                        isMinimized: false,
+                        bodies: [
+                            {
+                                content: '',
+                                isMinimized: false,
+                                subEntries: [
+                                    
+                                ],
+                                isSet: false
+                                
                             
                             }
                         ]
@@ -37,13 +82,13 @@ function ViewBooks(){
     }
 
     useEffect(() => {
-        if(user == ''){
+        if(user == '' || user == undefined){
             history.push('/login')
         }
             
         else{
             //setCollection(db.collection('testuser'))
-            db.collection(username[0])
+            db.collection(user)
             //.orderBy("timestamp", "asc")
             .onSnapshot(snapshot => {
                 
@@ -72,22 +117,35 @@ function ViewBooks(){
                     collection.map(book => {
                         if(book){
                             return(
-                            <div 
-                                key={Math.random()}
-                                className="viewbooks__collection"
-                                onClick={e => {
-                                    dispatch({
-                                        type: 'LOAD_BOOK',
-                                        item: {
-                                            chapters: book.chapters,
-                                            bookTitle: book.bookTitle
-                                        }
-                                    })
-                                    history.push('/makenotes')
-                                }}    
-                                style={{cursor:'default'}}
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    flexDirection: 'row'
+                                }}
                             >
-                                {book.bookTitle}
+                                <div 
+                                    key={Math.random()}
+                                    className="viewbooks__collection"
+                                    onClick={e => {
+                                        dispatch({
+                                            type: 'LOAD_BOOK',
+                                            item: {
+                                                chapters: book.chapters,
+                                                bookTitle: book.bookTitle
+                                            }
+                                        })
+                                        history.push('/makenotes')
+                                    }}    
+                                    style={{cursor:'default'}}
+                                >
+                                    {book.bookTitle}
+                                </div>
+                                <div
+                                    className="viewbooks__delete"
+                                    onClick={e => {confirmDelete(book.bookTitle)}}
+                                >
+                                    X
+                                </div>
                             </div>
                             )
                         }
@@ -100,10 +158,17 @@ function ViewBooks(){
 
             <button
                 className="viewbooks__button"
-                onClick={makeNewNote}
+                onClick={makeNewTesting}
             >
                 Create New Note
             </button>
+
+            {/* <button
+                className="viewbooks__button"
+                onClick={makeNewTesting}
+            >
+                Create New Testing
+            </button> */}
         </div>
     )
 }

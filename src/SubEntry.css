@@ -1,0 +1,7 @@
+.subentry{
+    margin-left: 35px;
+    display: flex;
+    flex-direction: row;
+    margin-top: -5px;
+    margin-bottom: 15px;
+}
