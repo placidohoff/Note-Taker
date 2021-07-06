@@ -113,7 +113,7 @@ function Login(){
         <div className="login">
             <div className="login__logo">Notebook Online</div>
             
-            <form>
+            {/* <form> */}
                 <h5>Email</h5>
                 <input 
                     value={email}
@@ -142,7 +142,7 @@ function Login(){
                         Login
                     </button>
                     <button
-                        type="submit"
+                        // type="submit"
                         onClick={createUser}
                     >
                         Create
@@ -159,7 +159,7 @@ function Login(){
                         Sign-in With Google
                     </button>
                 </div>
-            </form>
+            {/* </form> */}
             
             {
                 userError
