@@ -51,14 +51,14 @@ function SubEntry(props){
                 {
                     isSet 
                     ? 
-                    <div
+                    <pre
                         onClick={e => {setIsSet(false)}}
                         style={{
-                            fontSize: '12px'
+                            fontSize: '13px'
                         }}
                     >
                         {mainEntry}
-                    </div>
+                    </pre>
                     :
                     <div
                         style={{
